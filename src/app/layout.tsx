@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Button from "./components/button/button";
+import "@/app/globals.css";
+import Button from "@/app/components/button/button";
+import Navbar from "@/app/components/navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,29 +17,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="dark">
+        <html lang="en" className="dark bg-background">
             <body className={inter.className}>
-                <div className="flex justify-center items-center h-screen bg-background">
-                    <div className="flex w-2/3 h-screen space-x-4">
-                        <div className="flex flex-col justify-start space-y-2 w-1/5 h-full py-20 ">
-                            <h1 className="text-2xl font-semibold text-white ">Components</h1>
-                            <Button variant="ghost" align="start" href="/previews/alert">Alert</Button>
-                            <Button variant="ghost" align="start" href="/previews/avatar">Avatar</Button>
-                            <Button variant="ghost" align="start" href="/previews/badge">Badge</Button>
-                            <Button variant="ghost" align="start" href="/previews/button">Button</Button>
-                            <Button variant="ghost" align="start" href="/previews/checkbox">Checkbox</Button>
-                            <Button variant="ghost" align="start" href="/previews/choicebox">Choicebox</Button>
-                            <Button variant="ghost" align="start" href="/previews/dialog">Dialog</Button>
-
-                        </div>
-                        <div className="w-3/5 h-screen overflow-scroll py-20">
-                            {children}
-                        </div>
-                        <div className="w-1/5 h-full">
-
-                        </div>
-                    </div>
-                </div>
+                {children}
             </body>
         </html>
     );
