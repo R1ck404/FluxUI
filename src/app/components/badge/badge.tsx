@@ -1,0 +1,55 @@
+import React, { HTMLAttributes } from "react";
+import classNames from "classnames";
+import Link from "next/link";
+import { baseColors } from "@/app/utils/defaults";
+
+const colors = require('tailwindcss/colors');
+
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+    color?: 'dark' | "light" | "dark/white" | "dark/zinc" | "unknown" | typeof colors;
+    href?: string;
+}
+
+const Badge = ({
+    children,
+    className,
+    color = "unknown",
+    href,
+    ...rest
+}: BadgeProps) => {
+    const colorClasses = colors[color];
+    const classes = classNames(
+        "text-sm font-semibold inline-flex items-center px-2 py-0.5 rounded-full isolate transition-all duration-200 ease-in-out",
+        {
+            "text-white bg-zinc-900 dark:text-white dark:bg-zinc-700": color === "dark/zinc",
+            "text-black bg-white dark:text-black dark:bg-white": color === "dark/white",
+            "text-white bg-zinc-700 dark:bg-zinc-600": color === "dark",
+            "text-black bg-white border border-gray-300 dark:bg-neutral-200": color === "light",
+        },
+
+        className
+    );
+
+    const style = {
+        backgroundColor: colorClasses ? colorClasses[500] + "20" : color,
+        color: colorClasses ? colorClasses[500] : "white",
+    };
+
+    if (href) {
+        return (
+            <Link href={href}>
+                <span className={classes} {...rest} style={style}>
+                    {children}
+                </span>
+            </Link>
+        );
+    }
+
+    return (
+        <span className={classes} {...rest} style={style}>
+            {children}
+        </span>
+    );
+};
+
+export default Badge;

@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Define theme-aware variables */
+  --color-background: var(--color-background-light);
+  --color-text: var(--color-text-light);
+  --color-primary: var(--color-primary-light);
+  --color-secondary: var(--color-secondary-light);
+  --color-accent: var(--color-accent-light);
+  --color-border: var(--color-border-light);
+  --color-link: var(--color-link-light);
+
+  /* Additional CSS variables */
+  --color-background-light: #ffffff;
+  --color-text-light: #212529;
+  --color-primary-light: #007bff;
+  --color-secondary-light: #6c757d;
+  --color-accent-light: #ffc107;
+  --color-border-light: #e9ecef;
+  --color-link-light: #007bff;
+
+  --color-background-dark: #212529;
+  --color-text-dark: #f8f9fa;
+  --color-primary-dark: #0d6efd;
+  --color-secondary-dark: #adb5bd;
+  --color-accent-dark: #ffc107;
+  --color-border-dark: #495057;
+  --color-link-dark: #66b2ff;
+
+  /* Other variables as previously defined */
+  --font-family-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-family-serif: 'Georgia', serif;
+  --font-family-mono: 'Courier New', Courier, monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --line-height-xs: 1.2;
+  --line-height-sm: 1.4;
+  --line-height-md: 1.6;
+  --line-height-lg: 1.8;
+  --line-height-xl: 2;
+  --letter-spacing-tight: -0.05em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.05em;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 32px;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+  --transition-duration-fast: 0.2s;
+  --transition-duration-normal: 0.4s;
+  --transition-duration-slow: 0.6s;
+  --transition-timing-linear: linear;
+  --transition-timing-ease: ease;
+  --transition-timing-ease-in: ease-in;
+  --transition-timing-ease-out: ease-out;
+  --transition-timing-ease-in-out: ease-in-out;
+}
+
+[data-theme="dark"],
+.dark {
+  /* Override theme-aware variables for dark mode */
+  --color-background: var(--color-background-dark);
+  --color-text: var(--color-text-dark);
+  --color-primary: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary-dark);
+  --color-accent: var(--color-accent-dark);
+  --color-border: var(--color-border-dark);
+  --color-link: var(--color-link-dark);
+}

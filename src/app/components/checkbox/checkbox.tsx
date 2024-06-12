@@ -1,0 +1,79 @@
+"use client"
+import React, { useState } from "react";
+import classNames from "classnames";
+
+const colors = require('tailwindcss/colors');
+
+export interface CheckboxProps {
+    color?: 'dark' | "light" | "dark/white" | "dark/zinc" | "unknown" | typeof colors;
+    disabled?: boolean;
+    defaultChecked?: boolean;
+    checked?: boolean;
+    onChange?: (isChecked: boolean) => void;
+    children?: React.ReactNode;
+}
+
+const Checkbox = ({
+    color = "dark/zinc",
+    disabled = false,
+    defaultChecked = false,
+    checked: controlledChecked,
+    onChange,
+    children,
+}: CheckboxProps) => {
+    const [isChecked, setIsChecked] = useState(controlledChecked !== undefined ? controlledChecked : defaultChecked);
+
+    const handleToggle = () => {
+        console.log('handleToggle');
+        if (!disabled) {
+            const newCheckedState = !isChecked;
+            setIsChecked(newCheckedState);
+            if (onChange) {
+                onChange(newCheckedState);
+            }
+        }
+    };
+    const colorClasses = colors[color];
+    const classes = classNames(
+        "inline-flex items-center justify-center rounded border border-transparent cursor-pointer",
+        {
+            "text-white bg-zinc-200 hover:bg-zinc-300 dark:border dark:text-white dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:border-border": true,
+            "opacity-50 !cursor-not-allowed": disabled,
+        }
+    );
+
+    const style = {
+        backgroundColor: colorClasses ? colorClasses[500] : color,
+        color: colorClasses ? "white" : "",
+    };
+
+    return (
+        <div className="flex items-center space-x-2">
+            <div
+                className={classes}
+                onClick={handleToggle}
+                aria-checked={isChecked}
+                role="checkbox"
+                tabIndex={0}
+                style={isChecked ? style : {}}
+            >
+                <svg
+                    className={`h-4 w-4 ${isChecked ? 'visible' : 'invisible'}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M5 13l4 4L19 7"
+                    />
+                </svg>
+            </div>
+            <label className="select-none">{children}</label>
+        </div>
+    );
+};
+
+export default Checkbox;
