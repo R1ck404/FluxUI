@@ -227,7 +227,3 @@ Happy coding! 🚀
 ---
 
 ### [Flux UI Kit Documentation](https://flux.rickhuijser.com)
-
----
-
-Feel free to customize this README as per your project specifics and preferences. This template aims to provide a comprehensive overview while highlighting key features and steps to get started with the Flux UI Kit.
