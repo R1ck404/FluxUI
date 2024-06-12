@@ -18,6 +18,7 @@ export default function Home() {
             html.classList.toggle("dark");
         }
     }
+
     return (
         <main className="flex items-center justify-center flex-row h-screen bg-background text-color-default">
             <section className="flex lg:flex-row flex-col items-center w-full md:w-4/5 xl:w-3/4 h-full pt-10">
