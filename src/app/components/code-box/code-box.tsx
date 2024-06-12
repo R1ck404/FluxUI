@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import PrismLoader from '../prism-loader';
 import Button from '../button/button';
 
 export default function CodeBox({ component }: any) {
