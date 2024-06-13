@@ -7,7 +7,7 @@ import Button from "@/app/components/button/button";
 import Switch from "@/app/components/switch/switch";
 import { useState } from "react";
 
-export default function SeparatorPreviews() {
+export default function SwitchPreviews() {
     const [checked, setChecked] = useState(false);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ export default function SeparatorPreviews() {
                 />
             </ComponentPreview>
 
-            <CodeBox component="separator" />
+            <CodeBox component="switch" />
 
             <Separator className="!my-4" />
             <h1 className="text-xl font-semibold text-black dark:text-white">Examples</h1>

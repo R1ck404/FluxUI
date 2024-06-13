@@ -35,6 +35,7 @@ const Checkbox = ({
             }
         }
     };
+
     const colorClasses = colors[color];
     const classes = classNames(
         "inline-flex items-center justify-center rounded border border-transparent cursor-pointer",

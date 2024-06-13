@@ -58,7 +58,7 @@ export default function SelectPreviews() {
                     {!selectedOption && <ErrorMessage>Please select an option.</ErrorMessage>}
                 </form>
             </ComponentPreview>
-            <CodeBox component="badge" />
+            <CodeBox component="select" />
 
             <Separator className="!my-4" />
             <h1 className="text-xl font-semibold text-black dark:text-white">Examples</h1>

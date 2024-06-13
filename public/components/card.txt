@@ -25,7 +25,6 @@ const Card = ({
     className,
     ...rest
 }: CardProps) => {
-    const colorClasses = colors[color as keyof typeof colors];
     const classes = classNames(
         "p-4 isolate transition-all duration-200 ease-in-out",
         {
@@ -35,6 +34,7 @@ const Card = ({
             "text-black bg-white dark:bg-neutral-200": color === "light",
             "border border-gray-300 dark:border-border": outline,
             "rounded-md": rounded,
+            "rounded-sm": !rounded,
             "shadow-md": shadow,
         },
         className

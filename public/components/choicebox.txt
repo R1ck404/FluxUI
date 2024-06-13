@@ -21,10 +21,12 @@ const Choicebox = ({
     onChange,
     children,
 }: ChoiceBoxProps) => {
-    const [isChecked, setIsChecked] = useState(controlledChecked !== undefined ? controlledChecked : defaultChecked);
+    const [isChecked, setIsChecked] = useState(true);
 
     return (
-        <div className="flex items-center space-x-2 border border-border p-3 rounded-md hover:bg-zinc-600/30 transition-all" onClick={() => { setIsChecked(true) }}>
+        <div className="flex items-center space-x-2 border border-border p-3 rounded-md hover:bg-zinc-200/30 dark:hover:bg-zinc-600/30 transition-all" onClick={() => {
+            setIsChecked(!isChecked)
+        }}>
             <div className="flex-grow mr-12">{children}</div>
             <div>
                 <CustomCheckbox

@@ -80,7 +80,7 @@ const Select: React.FC<SelectProps> = ({
                                 'top-0 left-0 !mt-12': position === 'popper',
                                 '-top-1': position === 'default',
                                 'visible scale-100 opacity-100': isOpen,
-                                'invisible scale-80 opacity-0': !isOpen,
+                                'invisible scale-95 opacity-0': !isOpen,
                             }
                         )}
                     >

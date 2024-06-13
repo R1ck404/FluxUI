@@ -1,7 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import classNames from "classnames";
 import Link from "next/link";
-import { baseColors } from "@/app/utils/defaults";
 
 const colors = require('tailwindcss/colors');
 
