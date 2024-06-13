@@ -6,20 +6,20 @@ import ComponentPreview from "@/app/components/component-preview/component-previ
 import Badge from "@/app/components/badge/badge";
 import Button from "@/app/components/button/button";
 import { useState } from "react";
-import { SelectField, SelectLabel, SelectDescription, Select, SelectOption, ErrorMessage } from "@/app/components/select/select";
+import { SelectLabel, SelectDescription, Select, SelectOption, ErrorMessage } from "@/app/components/select/select";
 
 const options = [
-    { label: 'Option 1', value: 'option1' },
-    { label: 'Option 2', value: 'option2' },
-    { label: 'Option 3', value: 'option3' },
+    { label: 'option 1', value: 'option1' },
+    { label: 'option 2', value: 'option2' },
+    { label: 'option 3', value: 'option3' },
 ];
 
 
 export default function SelectPreviews() {
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState({ label: 'option 1', value: 'option1' });
 
-    const handleChange = (value: string | number) => {
-        setSelectedOption(value.toString());
+    const handleChange = (value: { label?: string; value: string | number }) => {
+        setSelectedOption(value as { label: string; value: string });
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -33,24 +33,26 @@ export default function SelectPreviews() {
         <main className="flex flex-col space-y-1 pb-8">
             <h1 className="text-xl font-semibold text-black dark:text-white">Select</h1>
             <p className="text-zinc-400 text-sm">Selects are used to collect data from the user.</p>
-            <ComponentPreview properties={{ selected_item: selectedOption }}>
+            <ComponentPreview properties={{ selected_item: selectedOption.value }}>
                 <form onSubmit={handleSubmit}>
-                    <SelectField className="w-40 text-sm font-semibold">
-                        <Select
-                            value={selectedOption}
-                            onChange={handleChange}
-                            invalid={!selectedOption}
-                            position="default"
-                            name="selectOption"
-                        >
-                            {options.map((option) => (
-                                <SelectOption key={option.value} value={option.value}>
-                                    {option.label}
-                                </SelectOption>
-                            ))}
-                        </Select>
-                        {!selectedOption && <ErrorMessage>Please select an option.</ErrorMessage>}
-                    </SelectField>
+                    <Select
+                        value={selectedOption}
+                        onChange={handleChange}
+                        invalid={!selectedOption}
+                        position="default"
+                        name="selectOption"
+                        trigger={
+                            <Button variant="default" color="dark/zinc">
+                                {selectedOption.label ? selectedOption.label : 'Select an option'}
+                            </Button>
+                        }>
+                        {options.map((option) => (
+                            <SelectOption key={option.value} value={option.value}>
+                                {option.label}
+                            </SelectOption>
+                        ))}
+                    </Select>
+                    {!selectedOption && <ErrorMessage>Please select an option.</ErrorMessage>}
                 </form>
             </ComponentPreview>
             <CodeBox component="badge" />
