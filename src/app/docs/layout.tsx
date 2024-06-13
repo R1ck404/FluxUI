@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import Button from "@/app/components/button/button";
 import Navbar from "@/app/components/navbar/navbar";
 import { Separator } from "../components/seperator/separator";
+import Badge from "../components/badge/badge";
 
 export default function SubLayout({
     children,
@@ -26,20 +27,37 @@ export default function SubLayout({
                         <Separator className="!my-4" />
 
                         <h1 className="text-xl font-semibold">Components</h1>
-                        <Button variant="ghost" align="start" href="/docs/alert" className="w-full">Alert</Button>
+                        <Button variant="ghost" align="start" href="/docs/alert" className="w-full">
+                            <span>Alert</span>
+                        </Button>
                         <Button variant="ghost" align="start" href="/docs/avatar" className="w-full">Avatar</Button>
                         <Button variant="ghost" align="start" href="/docs/badge" className="w-full">Badge</Button>
                         <Button variant="ghost" align="start" href="/docs/button" className="w-full">Button</Button>
                         <Button variant="ghost" align="start" href="/docs/card" className="w-full">Card</Button>
-                        <Button variant="ghost" align="start" href="/docs/checkbox" className="w-full">Checkbox</Button>
+                        <Button variant="ghost" align="start" href="/docs/checkbox" className="w-full">
+                            <p>Checkbox</p>
+                            <Badge color="yellow" size="sm" className="!ml-auto">Updated</Badge>
+                        </Button>
                         <Button variant="ghost" align="start" href="/docs/choicebox" className="w-full">Choicebox</Button>
                         <Button variant="ghost" align="start" href="/docs/context-menu" className="w-full">Context Menu</Button>
                         <Button variant="ghost" align="start" href="/docs/dialog" className="w-full">Dialog</Button>
-                        <Button variant="ghost" align="start" href="/docs/dropdown" className="w-full">Dropdown</Button>
-                        <Button variant="ghost" align="start" href="/docs/input" className="w-full">Input</Button>
-                        <Button variant="ghost" align="start" href="/docs/select" className="w-full">Select</Button>
+                        <Button variant="ghost" align="start" href="/docs/dropdown" className="w-full">
+                            <p>Dropdown</p>
+                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
+                        <Button variant="ghost" align="start" href="/docs/input" className="w-full">
+                            <p>Input</p>
+                            <Badge color="yellow" size="sm" className="!ml-auto">Updated</Badge>
+                        </Button>
+                        <Button variant="ghost" align="start" href="/docs/select" className="w-full">
+                            <p>Select</p>
+                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
                         <Button variant="ghost" align="start" href="/docs/separator" className="w-full">Separator</Button>
-                        <Button variant="ghost" align="start" href="/docs/switch" className="w-full">Switch</Button>
+                        <Button variant="ghost" align="start" href="/docs/switch" className="w-full">
+                            <p>Switch</p>
+                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
                     </div>
                     <div className="sm:w-4/5 md:w-3/5 h-screen overflow-scroll py-20">
                         {children}

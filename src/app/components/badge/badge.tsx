@@ -8,6 +8,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
     color?: 'dark' | "light" | "dark/white" | "dark/zinc" | "unknown" | typeof colors;
     href?: string;
     rounded?: boolean;
+    size?: "sm" | "md" | "lg";
 }
 
 const Badge = ({
@@ -16,11 +17,12 @@ const Badge = ({
     color = "dark/zinc",
     href,
     rounded = true,
+    size = "md",
     ...rest
 }: BadgeProps) => {
     const colorClasses = colors[color];
     const classes = classNames(
-        "text-sm font-semibold inline-flex items-center px-2 py-0.5 isolate transition-all duration-200 ease-in-out w-fit",
+        "text-sm font-semibold inline-flex items-center isolate transition-all duration-200 ease-in-out w-fit",
         {
             "text-white bg-zinc-900 dark:text-white dark:bg-zinc-700": color === "dark/zinc",
             "text-black bg-white dark:text-black dark:bg-white": color === "dark/white",
@@ -28,6 +30,9 @@ const Badge = ({
             "text-black bg-white border border-gray-300 dark:bg-neutral-200": color === "light",
             "rounded-full": rounded,
             "rounded-md": !rounded,
+            "px-1.5 py-0.5 text-xs": size === "sm",
+            "px-2 py-0.5 text-sm ": size === "md",
+            "px-3 py-1 text-md": size === "lg",
         },
 
         className
