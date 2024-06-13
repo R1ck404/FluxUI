@@ -27,7 +27,6 @@ export const metadata: Metadata = {
                 alt: "fluxui",
             },
         ],
-
     },
     twitter: {
         title: "FluxUI",
