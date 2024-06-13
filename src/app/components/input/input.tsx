@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 const colors = require('tailwindcss/colors');
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'prefix'> {
     color?: 'dark' | "light" | "dark/white" | "dark/zinc" | "unknown" | typeof colors;
     disabled?: boolean;
     rounded?: boolean;
@@ -11,6 +11,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     size?: number;
     icon?: React.ReactNode;
     className?: string;
+    suffix?: React.ReactNode;
+    prefix?: React.ReactNode;
 }
 
 const Input = ({
@@ -21,13 +23,15 @@ const Input = ({
     size = 1,
     icon,
     className,
+    suffix,
+    prefix,
     ...rest
 }: InputProps) => {
     const colorClasses = colors[color as keyof typeof colors];
     const baseColor = colorClasses ? colorClasses[500] : color;
 
     const classes = classNames(
-        "w-full p-2 transition-all duration-200 ease-in-out border border-border outline-none",
+        "relative w-full w-full transition-all duration-200 ease-in-out border border-border outline-none flex items-center justify-between",
         {
             "bg-white text-black dark:bg-zinc-800 dark:text-white": true,
             "border": bordered,
@@ -38,28 +42,45 @@ const Input = ({
             "focus:border": !disabled,
             [`focus:border-${baseColor}`]: !disabled,
         },
+        className
+    );
+
+    const inputClasses = classNames(
+        "w-full bg-transparent focus:outline-none p-2",
         {
             "text-sm py-1 px-2": size === 1,
             "text-base py-2 px-3": size === 2,
             "text-lg py-3 px-4": size === 3,
         },
-        className
-    );
+    )
 
     return (
-        <div className="relative w-full">
+        <div className={classNames(classes, {
+            "pl-10": icon,
+        })}>
+            {prefix && (
+                <div className="flex justify-center items-center h-full w-fit rounded-lg">
+                    {prefix}
+                </div>
+            )}
+
             {icon && (
-                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                <span className="absolute inset-y-0 left-0 flex items-center">
                     {icon}
                 </span>
             )}
+
             <input
-                className={classNames(classes, {
-                    "pl-10": icon, // Add padding if icon is present
-                })}
+                className={inputClasses}
                 disabled={disabled}
                 {...rest}
             />
+
+            {suffix && (
+                <div className="flex justify-center items-center h-full w-fit rounded-lg">
+                    {suffix}
+                </div>
+            )}
         </div>
     );
 };

@@ -46,7 +46,7 @@ const Select: React.FC<SelectProps> = ({
     };
 
     const selectClasses = classNames(
-        'relative bg-transparent border border-border rounded-md shadow-sm focus:outline-none',
+        'relative bg-transparent rounded-md focus:outline-none',
         {
             'cursor-not-allowed opacity-50': disabled,
             'border-red-500': invalid,
@@ -68,7 +68,7 @@ const Select: React.FC<SelectProps> = ({
                         onClick={handleToggle}>
                             {(React.Children.toArray(children).find((child) => (child as React.ReactElement<any>).props.value === selectedValue) as React.ReactElement<any>)?.props.children}
                             <svg className="h-4 w-4 ml-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                         </Button>
                 )}
@@ -116,7 +116,7 @@ interface SelectOptionProps {
 
 const SelectOption: React.FC<SelectOptionProps> = ({ value, onSelect, isSelected, children, className }) => {
     const optionClasses = classNames(   
-        'text-nowrap cursor-pointer select-none px-3 py-1.5 w-full border border-transparent rounded text-color-default hover:bg-background text-sm font-semibold',
+        'text-nowrap cursor-pointer select-none px-3 py-1.5 w-full border border-transparent rounded text-color-default hover:bg-zinc-500/30 text-sm font-semibold',
         {
             'bg-indigo-600 text-white hover:bg-indigo-500': isSelected,
         },

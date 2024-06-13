@@ -9,9 +9,9 @@ import { useState } from "react";
 import { SelectLabel, SelectDescription, Select, SelectOption, ErrorMessage } from "@/app/components/select/select";
 
 const options = [
-    { label: 'option 1', value: 'option1' },
-    { label: 'option 2', value: 'option2' },
-    { label: 'option 3', value: 'option3' },
+    { label: 'Admin', value: 'option1' },
+    { label: 'Moderator', value: 'option2' },
+    { label: 'Owner', value: 'option3' },
 ];
 
 
@@ -43,7 +43,10 @@ export default function SelectPreviews() {
                         name="selectOption"
                         trigger={
                             <Button variant="default" color="dark/zinc">
+                                <span>
                                 {selectedOption.label ? selectedOption.label : 'Select an option'}
+                                </span>
+                                <svg className="size-5 stroke-zinc-500 group-has-[[data-disabled]]:stroke-zinc-600 sm:size-4 dark:stroke-zinc-400 forced-colors:stroke-[CanvasText]" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M5.75 10.75L8 13L10.25 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.25 5.25L8 3L5.75 5.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                             </Button>
                         }>
                         {options.map((option) => (
@@ -60,8 +63,6 @@ export default function SelectPreviews() {
             <Separator className="!my-4" />
             <h1 className="text-xl font-semibold text-black dark:text-white">Examples</h1>
             <p className="text-zinc-400 text-sm">Select's can be used in various ways.</p>
-
-
 
             <div className="w-full flex justify-between mt-8">
                 <Button color="dark/zinc" className="w-min" href="/docs/input">
