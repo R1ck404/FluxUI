@@ -36,6 +36,7 @@ export default function SubLayout({
                         <Button variant="ghost" align="start" href="/docs/context-menu" className="w-full">Context Menu</Button>
                         <Button variant="ghost" align="start" href="/docs/dialog" className="w-full">Dialog</Button>
                         <Button variant="ghost" align="start" href="/docs/input" className="w-full">Input</Button>
+                        <Button variant="ghost" align="start" href="/docs/select" className="w-full">Select</Button>
                         <Button variant="ghost" align="start" href="/docs/separator" className="w-full">Separator</Button>
                     </div>
                     <div className="sm:w-4/5 md:w-3/5 h-screen overflow-scroll py-20">

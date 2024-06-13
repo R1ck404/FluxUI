@@ -25,7 +25,6 @@ const Card = ({
     className,
     ...rest
 }: CardProps) => {
-    const colorClasses = colors[color as keyof typeof colors];
     const classes = classNames(
         "p-4 isolate transition-all duration-200 ease-in-out",
         {
