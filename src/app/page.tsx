@@ -10,6 +10,15 @@ import Checkbox from "./components/checkbox/checkbox";
 import Choicebox from "./components/choicebox/choicebox";
 import Input from "./components/input/input";
 import { Separator } from "./components/seperator/separator";
+import Switch from "./components/switch/switch";
+import { ErrorMessage, Select, SelectOption } from "./components/select/select";
+import { useState } from "react";
+
+const options = [
+    { label: 'Admin', value: 'option1' },
+    { label: 'Moderator', value: 'option2' },
+    { label: 'Owner', value: 'option3' },
+];
 
 export default function Home() {
     const changeTheme = () => {
@@ -18,6 +27,18 @@ export default function Home() {
             html.classList.toggle("dark");
         }
     }
+
+    const [selectedOption, setSelectedOption] = useState({ label: 'option 1', value: 'option1' });
+
+    const handleChange = (value: { label?: string; value: string | number }) => {
+        setSelectedOption(value as { label: string; value: string });
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log('Form submitted with selected option:', selectedOption);
+        // Perform form submission logic here
+    };
 
     return (
         <main className="flex items-center justify-center flex-row h-screen bg-background text-color-default">
@@ -38,6 +59,28 @@ export default function Home() {
 
                 <div className="flex justify-end items-center !mt-2 md:mt-0 md:space-x-4 px-2 md:pl-20 w-full flex-col md:flex-row">
                     <div className="space-y-4 w-72 flex flex-col justify-center">
+                        <Select
+                            value={selectedOption}
+                            onChange={handleChange}
+                            invalid={!selectedOption}
+                            position="default"
+                            name="selectOption"
+                            className="ml-auto"
+                            trigger={
+                                <Button variant="default" color="dark/zinc">
+                                    <span>
+                                        {selectedOption.label ? selectedOption.label : 'Select an option'}
+                                    </span>
+                                    <svg className="size-5 stroke-zinc-500 group-has-[[data-disabled]]:stroke-zinc-600 sm:size-4 dark:stroke-zinc-400 forced-colors:stroke-[CanvasText]" viewBox="0 0 16 16" aria-hidden="true" fill="none"><path d="M5.75 10.75L8 13L10.25 10.75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.25 5.25L8 3L5.75 5.25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                </Button>
+                            }>
+                            {options.map((option) => (
+                                <SelectOption key={option.value} value={option.value}>
+                                    {option.label}
+                                </SelectOption>
+                            ))}
+                        </Select>
+                        {!selectedOption && <ErrorMessage>Please select an option.</ErrorMessage>}
                         <Card className="flex justify-between w-full h-min" outline={false}>
                             <div className="flex flex-col space-y-2">
                                 <p>Total revenue</p>
@@ -104,6 +147,8 @@ export default function Home() {
                                 </svg>
                             </button>
                         </Card>
+
+                        <Switch className="ml-auto" color="dark/zinc" checked={true} onChange={() => { }} contentAlign="before" size="xl" />
                     </div>
                     <div className="space-y-4 w-72 flex flex-col justify-center mt-8 lg:mt-0">
                         <Card className=" relative" outline={false}>
