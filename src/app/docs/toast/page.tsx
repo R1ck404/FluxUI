@@ -29,7 +29,7 @@ export default function ToastPreviews() {
                 </Button>
             </ComponentPreview>
 
-            <CodeBox component="switch" />
+            <CodeBox component="toast" />
 
             <Separator className="!my-4" />
             <h1 className="text-xl font-semibold text-black dark:text-white">Examples</h1>
