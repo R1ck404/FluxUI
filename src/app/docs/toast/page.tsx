@@ -41,7 +41,6 @@ export default function ToastPreviews() {
                 })}>
                     <span>Join meeting</span>
                 </Button>
-                <Toaster position="bottom-right" />
             </ComponentPreview>
 
             <ComponentPreview properties={{ action: 'button' }}>

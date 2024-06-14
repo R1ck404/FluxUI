@@ -22,7 +22,7 @@ const Badge = ({
 }: BadgeProps) => {
     const colorClasses = colors[color];
     const classes = classNames(
-        "text-sm font-semibold inline-flex items-center isolate transition-all duration-200 ease-in-out w-fit",
+        "text-sm font-semibold inline-flex items-center isolate transition-all duration-200 ease-in-out w-fit h-min",
         {
             "text-white bg-zinc-900 dark:text-white dark:bg-zinc-700": color === "dark/zinc",
             "text-black bg-white dark:text-black dark:bg-white": color === "dark/white",

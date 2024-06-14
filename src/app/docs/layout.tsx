@@ -5,6 +5,7 @@ import Button from "@/app/components/button/button";
 import Navbar from "@/app/components/navbar/navbar";
 import { Separator } from "../components/seperator/separator";
 import Badge from "../components/badge/badge";
+import { Toaster } from "../components/toast/toast";
 
 export default function SubLayout({
     children,
@@ -16,7 +17,7 @@ export default function SubLayout({
             <div className="flex flex-col w-full px-10 lg:px-0 lg:w-2/3 h-screen space-x-4">
                 <Navbar />
                 <div className="flex space-x-6">
-                    <div className="hidden flex-col justify-start space-y-2 w-2/5 lg:w-1/5 h-screen overflow-scroll py-20 md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
+                    <div className="hidden flex-col justify-start space-y-2 w-2/5 lg:w-1/5 h-screen overflow-scroll py-20 !pb-28 md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
                         <h1 className="text-xl font-semibold ">Getting Started</h1>
                         <Button variant="ghost" align="start" href="/docs/getting-started" className="w-full">Introduction</Button>
                         <Button variant="ghost" align="start" href="/docs/installation" className="w-full">Installation</Button>
@@ -40,7 +41,6 @@ export default function SubLayout({
                         <Button variant="ghost" align="start" href="/docs/dialog" className="w-full">Dialog</Button>
                         <Button variant="ghost" align="start" href="/docs/dropdown" className="w-full">
                             <p>Dropdown</p>
-                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
                         <Button variant="ghost" align="start" href="/docs/input" className="w-full">
                             <p>Input</p>
@@ -48,15 +48,21 @@ export default function SubLayout({
                         </Button>
                         <Button variant="ghost" align="start" href="/docs/select" className="w-full">
                             <p>Select</p>
-                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
                         <Button variant="ghost" align="start" href="/docs/separator" className="w-full">Separator</Button>
                         <Button variant="ghost" align="start" href="/docs/switch" className="w-full">
-                            <p>Switch</p>
+                            <p>Skeleton</p>
                             <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
+                        <Button variant="ghost" align="start" href="/docs/switch" className="w-full">
+                            <p>Switch</p>
                         </Button>
                         <Button variant="ghost" align="start" href="/docs/toast" className="w-full">
                             <p>Toast</p>
+                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
+                        <Button variant="ghost" align="start" href="/docs/feedback" className="w-full">
+                            <p>Feedback</p>
                             <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
                     </div>
@@ -68,6 +74,7 @@ export default function SubLayout({
                     </div>
                 </div>
             </div>
+            <Toaster position="bottom-right" />
         </div>
     );
 }

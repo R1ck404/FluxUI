@@ -25,7 +25,7 @@ const Button = ({
 }: ButtonProps) => {
     const colorClasses = colors[color];
     const classes = classNames(
-        "w-fit text-sm font-semibold inline-flex items-center px-3 py-1.5 rounded-md isolate transition-all duration-200 ease-in-out font-semibold space-x-2 border border-transparent",
+        "text-nowrap w-fit text-sm font-semibold inline-flex items-center px-3 py-1.5 rounded-md isolate transition-all duration-200 ease-in-out font-semibold space-x-2 border border-transparent",
         {
             "text-white bg-zinc-900 hover:bg-zinc-800 dark:border dark:text-white dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:border-border": color === "dark/zinc",
             "text-white bg-zinc-900 hover:bg-zinc-800 dark:border dark:text-black dark:bg-white dark:hover:bg-neutral-200 dark:border-border": color === "dark/white",

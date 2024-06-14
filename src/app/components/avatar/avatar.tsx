@@ -5,7 +5,7 @@ interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
     src?: string;
     square?: boolean;
     initials?: string;
-    size?: string;
+    size?: "16" | "14" | "12" | "10" | "8" | "6" | "4" | "5";
 }
 
 const Avatar: React.FC<AvatarProps> = ({
@@ -13,7 +13,7 @@ const Avatar: React.FC<AvatarProps> = ({
     square = false,
     initials,
     className,
-    size = "8",
+    size = "10",
     ...props
 }) => {
     const classes = classNames(
@@ -38,7 +38,7 @@ const Avatar: React.FC<AvatarProps> = ({
                 <img
                     src={src}
                     alt="Avatar"
-                    className={`w-full h-full ${square ? "" : "rounded-full"}`}
+                    className={`w-full h-full ${square ? "" : "rounded-full"} object-cover`}
                 />
             ) : (
                 <span>{initials}</span>
