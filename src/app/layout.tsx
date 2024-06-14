@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import Button from "@/app/components/button/button";
 import Navbar from "@/app/components/navbar/navbar";
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,6 +52,7 @@ export default function RootLayout({
         <html lang="en" className="dark bg-background">
             <body className={inter.className}>
                 {children}
+                <Analytics />
             </body>
         </html>
     );
