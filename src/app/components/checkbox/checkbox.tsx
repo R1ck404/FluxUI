@@ -68,6 +68,7 @@ const Checkbox = ({
                     stroke="currentColor"
                 >
                     <path
+                        className={isChecked ? "animate-checkmark" : ""}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"

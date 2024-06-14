@@ -16,10 +16,7 @@ export default function SubLayout({
             <div className="flex flex-col w-full px-10 lg:px-0 lg:w-2/3 h-screen space-x-4">
                 <Navbar />
                 <div className="flex space-x-6">
-                    <div className="fixed top-7 text-black dark:text-white md:hidden -translate-x-1/2 transform left-1/2">
-                        <svg width="24" height="24"><path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path></svg>
-                    </div>
-                    <div className="hidden flex-col justify-start space-y-2 w-1/5 h-screen overflow-scroll py-20 md:flex text-zinc-900 dark:text-zinc-200">
+                    <div className="hidden flex-col justify-start space-y-2 w-2/5 lg:w-1/5 h-screen overflow-scroll py-20 md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
                         <h1 className="text-xl font-semibold ">Getting Started</h1>
                         <Button variant="ghost" align="start" href="/docs/getting-started" className="w-full">Introduction</Button>
                         <Button variant="ghost" align="start" href="/docs/installation" className="w-full">Installation</Button>
@@ -58,8 +55,12 @@ export default function SubLayout({
                             <p>Switch</p>
                             <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
+                        <Button variant="ghost" align="start" href="/docs/toast" className="w-full">
+                            <p>Toast</p>
+                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
+                        </Button>
                     </div>
-                    <div className="sm:w-4/5 md:w-3/5 h-screen overflow-scroll py-20">
+                    <div className="w-full xl:w-3/5 h-screen overflow-scroll py-20 no-scrollbar">
                         {children}
                     </div>
                     <div className="hidden md:block sm:w-1/5 h-full">

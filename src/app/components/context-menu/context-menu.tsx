@@ -79,10 +79,10 @@ export const ContextMenuContent: FC<{ children: ReactNode, className?: string, o
     const { menuState, hideMenu } = useContextMenu();
 
     const classes = classNames(
-        "context-menu fixed rounded-md shadow-md z-[100] p-0.5 text-black bg-zinc-100 dark:border dark:text-white dark:bg-zinc-700 dark:border-border",
+        "context-menu fixed rounded-md shadow-md z-[100] p-0.5 text-black bg-zinc-100 dark:border dark:text-white dark:bg-zinc-700 dark:border-border transition-all duration-250 scale-100 transform origin-top",
         {
-            "hidden": !menuState.visible,
-            "block": menuState.visible
+            "invisible scale-0 opacity-0": !menuState.visible,
+            "visible scale-100 opacity-100": menuState.visible
         },
         {
             "border border-border": outline,
