@@ -13,6 +13,7 @@ import { Separator } from "./components/seperator/separator";
 import Switch from "./components/switch/switch";
 import { ErrorMessage, Select, SelectOption } from "./components/select/select";
 import { useState } from "react";
+import { Toaster, toast } from "./components/toast/toast";
 
 const options = [
     { label: 'Admin', value: 'option1' },
@@ -34,14 +35,10 @@ export default function Home() {
         setSelectedOption(value as { label: string; value: string });
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('Form submitted with selected option:', selectedOption);
-        // Perform form submission logic here
-    };
 
     return (
         <main className="flex items-center justify-center flex-row h-screen bg-background text-color-default">
+            <Toaster position="bottom-right" />
             <section className="flex lg:flex-row flex-col items-center w-full md:w-4/5 xl:w-3/4 h-full pt-10">
                 <div className="flex flex-col w-1/2 space-y-4">
                     <h1 className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-300">Fully Customizable <span className="text-4xl font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">UI Components</span> for <span className="text-4xl font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">Effortless Integration</span></h1>
@@ -106,7 +103,12 @@ export default function Home() {
                                 <p className="text-sm">We use cookies to ensure you get the best experience on our website.</p>
                                 <div className="flex justify-between !mt-4">
                                     <Button variant="ghost">Cancel</Button>
-                                    <Button variant="default" color="indigo">Accept</Button>
+                                    <Button variant="default" color="indigo" onClick={() => {
+                                        console.log("Cookies accepted.");
+                                        toast.info("Cookies accepted.", {
+                                            action: <Button variant="ghost" onClick={() => { }}>Dismiss</Button>
+                                        })
+                                    }}>Accept</Button>
                                 </div>
                             </div>
                         </Card>
@@ -161,7 +163,26 @@ export default function Home() {
 
                             <div className="w-full text-end space-x-1 mt-4">
                                 <Button variant="ghost">Cancel</Button>
-                                <Button variant="ghost" color="rose">Delete</Button>
+                                <Button variant="ghost" color="rose" onClick={() => {
+                                    console.log("User deleted.");
+                                    toast.promise(() => {
+                                        return new Promise((resolve) => {
+                                            setTimeout(() => {
+                                                resolve('User has been deleted.');
+                                            }, 2000);
+                                        });
+                                    }, {
+                                        loading: <div className="flex items-center space-x-1">
+                                            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            <span>Deleting...</span>
+                                        </div>,
+                                        success: 'User has been deleted.',
+                                        error: 'An error occurred.',
+                                    });
+                                }}>Delete</Button>
                             </div>
                             <button
                                 className="absolute top-3 right-3 text-gray-400 hover:text-gray-500 focus:outline-none"
