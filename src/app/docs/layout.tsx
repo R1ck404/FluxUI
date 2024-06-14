@@ -50,7 +50,7 @@ export default function SubLayout({
                             <p>Select</p>
                         </Button>
                         <Button variant="ghost" align="start" href="/docs/separator" className="w-full">Separator</Button>
-                        <Button variant="ghost" align="start" href="/docs/switch" className="w-full">
+                        <Button variant="ghost" align="start" href="/docs/skeleton" className="w-full">
                             <p>Skeleton</p>
                             <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
