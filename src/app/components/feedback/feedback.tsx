@@ -59,7 +59,7 @@ const Feedback: React.FC<FeedbackProps> = ({ onSubmit, feedbackTypes, rounded = 
     );
 
     const feedbackContainerClasses = classNames(
-        'flex flex-col transition-all transform duration-300 ease-in-out overflow-hidden w-full',
+        'flex flex-col transition-all transform duration-500 ease-in-out overflow-hidden w-full',
         {
             'invisible opacity-0 min-h-0 h-0 min-w-20': selected === null,
             'visible opacity-100 min-h-20 h-auto max-h-40 min-w-52 w-52 mt-1.5': selected !== null,
@@ -100,7 +100,7 @@ const Feedback: React.FC<FeedbackProps> = ({ onSubmit, feedbackTypes, rounded = 
                                 key: type.id,
                                 onClick: () => handleIconClick(index),
                                 className: classNames(
-                                    'text-nowrap cursor-pointer size-9 rounded-full hover:bg-background focus:outline-none transition  border border-transparent',
+                                    'text-nowrap cursor-pointer size-9 rounded-full hover:bg-background focus:outline-none transition border border-transparent',
                                     {
                                         'border !border-border': selected === index,
                                     }

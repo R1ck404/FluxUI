@@ -13,11 +13,11 @@ export default function SubLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="flex justify-center items-center overflow-hidden h-screen bg-background">
-            <div className="flex flex-col w-full px-10 lg:px-0 lg:w-2/3 h-screen space-x-4">
+        <div className="flex justify-center items-center overflow-scroll min-h-screen bg-background no-scrollbar">
+            <div className="flex flex-col w-full px-10 lg:px-0 lg:w-2/3 h-screen">
                 <Navbar />
-                <div className="flex space-x-6">
-                    <div className="hidden flex-col justify-start space-y-2 w-2/5 lg:w-1/5 h-screen overflow-scroll py-20 !pb-28 md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
+                <div className="flex md:space-x-6 py-20 mt-10 relative overflow-hidden ">
+                    <div className="hidden sticky pb-24 flex-col justify-start space-y-2 w-2/5 md:w-2/6 lg:w-1/5 overflow-scroll md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
                         <h1 className="text-xl font-semibold ">Getting Started</h1>
                         <Button variant="ghost" align="start" href="/docs/getting-started" className="w-full">Introduction</Button>
                         <Button variant="ghost" align="start" href="/docs/installation" className="w-full">Installation</Button>
@@ -66,11 +66,8 @@ export default function SubLayout({
                             <Badge color="green" size="sm" className="!ml-auto">New</Badge>
                         </Button>
                     </div>
-                    <div className="w-full xl:w-3/5 h-screen overflow-scroll py-20 no-scrollbar">
+                    <div className="w-full md:w-3/4 min-h-screen overflow-scroll no-scrollbar pb-24">
                         {children}
-                    </div>
-                    <div className="hidden md:block sm:w-1/5 h-full">
-
                     </div>
                 </div>
             </div>
