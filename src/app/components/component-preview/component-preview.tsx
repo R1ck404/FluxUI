@@ -11,7 +11,7 @@ export default function ComponentPreview({ children, className, properties }: { 
 
     return (
         <div className={`flex flex-col sm:flex-row w-full border rounded-lg border-border relative ${className ?? ""}`}>
-            <div className="flex justify-center items-center w-full p-4 min-h-32 sm:space-x-2 flex-col">
+            <div className="flex justify-center items-center w-full p-4 min-h-32 sm:space-x-2">
                 {children}
             </div>
             <div>
