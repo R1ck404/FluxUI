@@ -1,77 +1,34 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "@/app/globals.css";
-import Button from "@/app/components/button/button";
-import Navbar from "@/app/components/navbar/navbar";
-import { Separator } from "../components/seperator/separator";
-import Badge from "../components/badge/badge";
+import Link from "next/link";
+import '@/app/globals.css';
+import Button from "../components/button/button";
+import Input from "../components/input/input";
+import Sidebar from "../components/documentation/sidebar/sidebar";
+import Navbar from "../components/documentation/navbar/navbar";
 import { Toaster } from "../components/toast/toast";
 
-export default function SubLayout({
+export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <div className="flex justify-center items-center overflow-scroll min-h-screen bg-background no-scrollbar">
-            <div className="flex flex-col w-full px-10 lg:px-0 lg:w-2/3 h-screen">
-                <Navbar />
-                <div className="flex md:space-x-6 py-20 mt-10 relative overflow-hidden ">
-                    <div className="hidden sticky pb-24 flex-col justify-start space-y-2 w-2/5 md:w-2/6 lg:w-1/5 overflow-scroll md:flex text-zinc-900 dark:text-zinc-200 no-scrollbar">
-                        <h1 className="text-xl font-semibold ">Getting Started</h1>
-                        <Button variant="ghost" align="start" href="/docs/getting-started" className="w-full">Introduction</Button>
-                        <Button variant="ghost" align="start" href="/docs/installation" className="w-full">Installation</Button>
-
-                        <Separator className="!my-4" />
-
-                        <h1 className="text-xl font-semibold">Components</h1>
-                        <Button variant="ghost" align="start" href="/docs/alert" className="w-full">
-                            <span>Alert</span>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/avatar" className="w-full">Avatar</Button>
-                        <Button variant="ghost" align="start" href="/docs/badge" className="w-full">Badge</Button>
-                        <Button variant="ghost" align="start" href="/docs/button" className="w-full">Button</Button>
-                        <Button variant="ghost" align="start" href="/docs/card" className="w-full">Card</Button>
-                        <Button variant="ghost" align="start" href="/docs/checkbox" className="w-full">
-                            <p>Checkbox</p>
-                            <Badge color="yellow" size="sm" className="!ml-auto">Updated</Badge>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/choicebox" className="w-full">Choicebox</Button>
-                        <Button variant="ghost" align="start" href="/docs/context-menu" className="w-full">Context Menu</Button>
-                        <Button variant="ghost" align="start" href="/docs/dialog" className="w-full">Dialog</Button>
-                        <Button variant="ghost" align="start" href="/docs/dropdown" className="w-full">
-                            <p>Dropdown</p>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/input" className="w-full">
-                            <p>Input</p>
-                            <Badge color="yellow" size="sm" className="!ml-auto">Updated</Badge>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/select" className="w-full">
-                            <p>Select</p>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/separator" className="w-full">Separator</Button>
-                        <Button variant="ghost" align="start" href="/docs/skeleton" className="w-full">
-                            <p>Skeleton</p>
-                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/switch" className="w-full">
-                            <p>Switch</p>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/toast" className="w-full">
-                            <p>Toast</p>
-                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
-                        </Button>
-                        <Button variant="ghost" align="start" href="/docs/feedback" className="w-full">
-                            <p>Feedback</p>
-                            <Badge color="green" size="sm" className="!ml-auto">New</Badge>
-                        </Button>
-                    </div>
-                    <div className="w-full md:w-3/4 min-h-screen overflow-scroll no-scrollbar pb-24">
-                        {children}
-                    </div>
-                </div>
-            </div>
+        <>
             <Toaster position="bottom-right" />
-        </div>
+            <Navbar />
+
+            <div className="flex mx-auto max-w-[90rem]">
+                <Sidebar />
+
+                <article className="flex w-full pr-6 pb-8 break-words jsutify-center min-w-0 min-h-[100vh-4rem]">
+                    {children}
+                </article>
+
+                <nav className="hidden xl:block px-4 shrink-0 w-64 order-last">
+                    <div className="text-sm py-6 pr-4 overflow-y-auto max-h-[100vh-4rem] top-16 sticky">
+                        <Link href='#' className="text-xs text-color-secondary">Question? give us feedback</Link>
+                    </div>
+                </nav>
+            </div>
+        </>
     );
 }

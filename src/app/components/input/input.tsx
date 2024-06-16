@@ -7,7 +7,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
     color?: 'dark' | "light" | "dark/white" | "dark/zinc" | "unknown" | typeof colors;
     disabled?: boolean;
     rounded?: boolean;
-    bordered?: boolean;
+    outline?: boolean;
     size?: number;
     icon?: React.ReactNode;
     className?: string;
@@ -19,7 +19,7 @@ const Input = ({
     color = "dark/zinc",
     disabled = false,
     rounded = true,
-    bordered = true,
+    outline = true,
     size = 1,
     icon,
     className,
@@ -31,10 +31,10 @@ const Input = ({
     const baseColor = colorClasses ? colorClasses[500] : color;
 
     const classes = classNames(
-        "relative w-full w-full transition-all duration-200 ease-in-out border border-border outline-none flex items-center justify-between",
+        "relative w-full w-full transition-all duration-200 ease-in-out border border-transparent outline-none flex items-center justify-between",
         {
             "bg-white text-black dark:bg-zinc-800 dark:text-white": true,
-            "border": bordered,
+            "border !border-border": outline,
             "rounded-md": rounded,
             "rounded-sm": !rounded,
             "opacity-50 cursor-not-allowed": disabled,

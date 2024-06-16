@@ -1,11 +1,11 @@
-"use client"
-
-import Button from "@/app/components/button/button";
+import Breadcrumb from "@/app/components/breadcrumb/breadcrumb";
 import Card from "@/app/components/card/card";
+import DocumentationPage from "@/app/components/documentation/documentation-page/doc-page";
 
 export default function Installation() {
     return (
-        <main className="flex flex-col space-y-8 pb-8">
+        <DocumentationPage breadcrumbs={[{ label: "Documentation" }, { label: "Installation" }]} currentPage="Installation" previousPage={{ name: "Getting Started", href: "/docs/getting-started" }} nextPage={{ name: "Usage", href: "/docs/usage" }}>
+            <main className="flex flex-col space-y-8 pb-8">
             <div>
                 <h1 className="text-xl font-semibold text-black dark:text-white">Installation</h1>
                 <p className="text-black dark:text-zinc-200 text-sm">To use the components from our UI library, you'll need to set up Tailwind CSS and install the classnames package. Follow the steps below to get started.</p>
@@ -180,18 +180,8 @@ export default config;
                 <Card color="dark/zinc" className="space-y-4">
                     <p>yarn add classnames</p>
                 </Card>
-            </div>
-
-            <div className="w-full flex justify-between mt-8">
-                <Button color="dark/zinc" className="w-min" href="/docs/getting-started">
-                    <svg className="rotate-180" width="14" height="14" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" fill="currentcolor"><path d="M6.39205 11.6023L5.36932 10.5909L8.92045 7.03977H0V5.5625H8.92045L5.36932 2.01705L6.39205 1L11.6932 6.30114L6.39205 11.6023Z"></path></svg>
-                    <span>Getting Started</span>
-                </Button>
-                <Button color="dark/zinc" className="w-min" href="/docs/alert">
-                    <span>Alert</span>
-                    <svg width="14" height="14" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" fill="currentcolor"><path d="M6.39205 11.6023L5.36932 10.5909L8.92045 7.03977H0V5.5625H8.92045L5.36932 2.01705L6.39205 1L11.6932 6.30114L6.39205 11.6023Z"></path></svg>
-                </Button>
-            </div>
-        </main>
-    );
+                </div>
+            </main>
+        </DocumentationPage>
+    )
 }
