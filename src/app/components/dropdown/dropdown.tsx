@@ -56,6 +56,10 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ isOpen, children, position 
     }, [position]);
 
     useEffect(() => {
+        calculatePosition();
+    }, [])
+
+    useEffect(() => {
         if (isOpen) {
             calculatePosition();
             window.addEventListener('resize', calculatePosition);
