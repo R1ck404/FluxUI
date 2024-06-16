@@ -129,7 +129,7 @@ export default function Sidebar() {
     }, [theme]);
 
     return (
-        <aside className={`flex flex-col flex-start flex-shrink-0 top-16 sticky h-[calc(100vh-4rem)] hidden md:block transition-all duration-300 ${collapsed ? 'w-1 ml-4' : 'w-64'}`}>
+        <aside className={`hidden flex-col flex-start flex-shrink-0 top-16 sticky h-[calc(100vh-4rem)] md:flex transition-all duration-300 ${collapsed ? 'w-1 ml-4' : 'w-64'}`}>
             <div className="overflow-y-auto overflow-x-hidden h-[calc(100vh-4rem)] p-4 flex-grow text-color-default no-scrollbar">
                 <ul className={`flex flex-col gap-1 max-md:hidden ${collapsed ? 'invisible' : 'visible'}`}>
                     {pages.map((page) => (
