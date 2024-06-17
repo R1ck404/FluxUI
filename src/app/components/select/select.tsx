@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Button from '../button/button';
 
@@ -30,6 +30,8 @@ const Select: React.FC<SelectProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(defaultValue || value || '');
 
+    const dropdownRef = useRef<HTMLUListElement>(null);
+
     const handleToggle = () => {
         if (!disabled) setIsOpen(!isOpen);
     };
@@ -37,20 +39,30 @@ const Select: React.FC<SelectProps> = ({
     const handleChange = (newValue: string | number) => {
         setSelectedValue(newValue);
         setIsOpen(false);
-        if (onChange) onChange(
-            {
-                label: (React.Children.toArray(children).find((child) => (child as React.ReactElement<any>).props.value === newValue) as React.ReactElement<any>).props.children
-                , value: newValue
-            }
-        );
+        if (onChange) onChange({
+            label: (React.Children.toArray(children).find((child) => (child as React.ReactElement<any>).props.value === newValue) as React.ReactElement<any>)?.props.children,
+            value: newValue
+        });
     };
+
+    // Close dropdown if clicked outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     const selectClasses = classNames(
         'relative bg-transparent rounded-md focus:outline-none',
         {
             'cursor-not-allowed opacity-50': disabled,
             'border-red-500': invalid,
-            'z-10': isOpen && position === 'popper',
         }
     );
 
@@ -64,32 +76,38 @@ const Select: React.FC<SelectProps> = ({
                 {trigger ? (
                     <div onClick={handleToggle}>{trigger}</div>
                 ) : (
-                    <Button variant='default' color="dark/zinc" align="start" className="w-full h-full text-left bg-transparent"
-                        onClick={handleToggle}>
+                        <Button
+                            variant='default'
+                            color="dark/zinc"
+                            align="start"
+                            className="w-full h-full text-left bg-transparent"
+                            onClick={handleToggle}
+                        >
                             {(React.Children.toArray(children).find((child) => (child as React.ReactElement<any>).props.value === selectedValue) as React.ReactElement<any>)?.props.children}
                             <svg className="h-4 w-4 ml-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                         </Button>
                 )}
-
-                    <ul
-                        className={classNames(
-                            'absolute -mt-[.05rem] -ml-[calc(.6rem/2)] min-w-[calc(100%+2px+.6rem)] w-auto bg-secondary text-color-secondary border border-border rounded-md shadow-lg z-20 p-1 space-y-1  transition-all duration-250 scale-100 transform origin-top',
-                            {
-                                'top-0 left-0 !mt-12': position === 'popper',
-                                '-top-1': position === 'default',
-                                'visible scale-100 opacity-100': isOpen,
-                                'invisible scale-80 opacity-0': !isOpen,
-                            }
-                        )}
-                    >
-                        {React.Children.map(children, (child) =>
-                            React.cloneElement(child as React.ReactElement<any>, {
-                                onSelect: handleChange,
-                                isSelected: (child as React.ReactElement<any>).props.value === selectedValue,
-                            })
-                        )}
+                <ul
+                    ref={dropdownRef}
+                    className={classNames(
+                        'absolute -mt-[.05rem] -ml-[calc(.6rem/2)] min-w-[calc(100%+2px+.6rem)] w-auto bg-secondary text-color-secondary border border-border rounded-md shadow-lg z-[1010] p-1 space-y-1 transition-all duration-250 scale-100 transform origin-top',
+                        {
+                            'top-0 left-0 !mt-12': position === 'popper',
+                            '-top-1': position === 'default',
+                            'visible scale-100 opacity-100': isOpen,
+                            'invisible scale-80 opacity-0': !isOpen,
+                        }
+                    )}
+                    style={{ zIndex: 1000 }} // Added z-index directly for debugging
+                >
+                    {React.Children.map(children, (child) =>
+                        React.cloneElement(child as React.ReactElement<any>, {
+                            onSelect: handleChange,
+                            isSelected: (child as React.ReactElement<any>).props.value === selectedValue,
+                        })
+                    )}
                 </ul>
             </div>
         </div>
@@ -101,9 +119,7 @@ interface SelectTriggerProps {
 }
 
 const SelectTrigger: React.FC<SelectTriggerProps> = ({ children }) => {
-    return <div className="relative">
-        {children}
-    </div>;
+    return <div className="relative">{children}</div>;
 };
 
 interface SelectOptionProps {
@@ -115,7 +131,7 @@ interface SelectOptionProps {
 }
 
 const SelectOption: React.FC<SelectOptionProps> = ({ value, onSelect, isSelected, children, className }) => {
-    const optionClasses = classNames(   
+    const optionClasses = classNames(
         'text-nowrap cursor-pointer select-none px-3 py-1.5 w-full border border-transparent rounded text-color-default hover:bg-zinc-500/30 text-sm font-semibold',
         {
             'bg-indigo-600 text-white hover:bg-indigo-500': isSelected,
@@ -134,6 +150,7 @@ const SelectOption: React.FC<SelectOptionProps> = ({ value, onSelect, isSelected
         </li>
     );
 };
+
 interface SelectLabelProps {
     children?: React.ReactNode;
 }
@@ -146,7 +163,7 @@ interface SelectDescriptionProps {
     children?: React.ReactNode;
 }
 
-const SelectDescription: React.FC<SelectDescriptionProps> = ({ children }: { children?: React.ReactNode }) => {
+const SelectDescription: React.FC<SelectDescriptionProps> = ({ children }) => {
     return <p className="text-xs text-gray-500">{children}</p>;
 };
 
@@ -154,7 +171,7 @@ interface ErrorMessageProps {
     children?: React.ReactNode;
 }
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ children }: { children?: React.ReactNode }) => {
+const ErrorMessage: React.FC<ErrorMessageProps> = ({ children }) => {
     return <p className="text-xs text-red-500 mt-1">{children}</p>;
 };
 

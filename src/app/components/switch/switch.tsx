@@ -54,7 +54,7 @@ const Switch: React.FC<SwitchProps> = ({
 
         'cursor-pointer': !disabled,
         'cursor-not-allowed opacity-50': disabled,
-        'border !border-border': !isChecked && ['dark', 'light', 'dark/white', 'dark/zinc'].includes(color),
+        'border !border-border': !isChecked,// && ['dark', 'light', 'dark/white', 'dark/zinc'].includes(color),
         'bg-zinc-600/80 dark:bg-zinc-500/80': isChecked,
     });
 
@@ -94,10 +94,11 @@ const Switch: React.FC<SwitchProps> = ({
                 className="hidden"
                 name={name}
                 value={value}
-                defaultChecked={defaultChecked}
+                defaultChecked={defaultChecked ?? false}
                 checked={checked ?? isChecked}
                 disabled={disabled}
                 ref={ref}
+                onChange={onChange}
             />
             <button className={switchClasses} style={style}>
                 <span className={sliderClasses} />

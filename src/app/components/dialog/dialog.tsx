@@ -30,7 +30,7 @@ const Dialog = ({ open, onClose, className, children, outline }: DialogProps) =>
     return (
         <>
             {visible && (
-                <div className={classNames("fixed inset-0 z-50 overflow-y-auto flex justify-center items-center", className)}>
+                <div className={classNames("fixed inset-0 z-[1010] overflow-y-auto flex justify-center items-center", className)}>
                     <div
                         className={`fixed inset-0 bg-black transition-opacity duration-300 ${animate ? "opacity-30" : "opacity-0"
                             }`}

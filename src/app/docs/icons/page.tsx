@@ -22,7 +22,7 @@ const iconLibraries = {
     },
     radix: {
         display: 'RadixUI',
-        url: 'https://icons.modulz.app/',
+        url: 'https://www.radix-ui.com/icons',
         directory: 'radix',
     }
 };
@@ -34,16 +34,13 @@ export default function Icons() {
     const [loading, setLoading] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const [activeTabs, setActiveTabs] = useState<string[]>(
-        // add geist by default
-        iconLibraries.geist ? ['geist'] : []
-    );
+    const [activeTabs, setActiveTabs] = useState<string>('geist');
 
     useEffect(() => {
         const fetchIconList = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('/icons-list.json');
+                const response = await fetch(`/icons/${iconLibraries[activeTabs].directory}/icons-list.json`);
                 const data = await response.json();
                 setIconList(data);
                 setOriginalIconList(data);
@@ -55,7 +52,7 @@ export default function Icons() {
         };
 
         fetchIconList();
-    }, []);
+    }, [activeTabs]);
 
     useEffect(() => {
         const loadIcons = async () => {
@@ -65,7 +62,7 @@ export default function Icons() {
 
             await Promise.all(iconList.map(async (iconFile) => {
                 const name = iconFile.replace('.svg', '');
-                const response = await fetch(`/icons/geist/${iconFile}`);
+                const response = await fetch(`/icons/${iconLibraries[activeTabs].directory}/${iconFile}`);
                 const svg = await response.text();
                 newIcons.push({ name, svg });
             }));
@@ -105,25 +102,33 @@ export default function Icons() {
             <p className="mt-4 text-color-secondary">
                 Icons are used to represent actions, objects, or concepts in a visual way.
             </p>
-            <p className="text-sm text-color-secondary">
-                NOTE: The icons below are scraped from the <Link href="https://vercel.com/geist/icons" target="_blank" rel="noreferrer" className="underline">GeistUI</Link> library.
-                <br />
-                If the owner of the library (Vercel) wants me to remove the icons, please contact me.
-            </p>
+            {
+                activeTabs === 'geist' && (
+                    <p className="text-sm text-color-secondary">
+                        NOTE: The icons below are scraped from the <Link href="https://vercel.com/geist/icons" target="_blank" rel="noreferrer" className="underline">GeistUI</Link> library.
+                        <br />
+                        If the owner of the library (Vercel) wants me to remove the icons, please contact me.
+                    </p>
+                )
+            }
+            {
+                activeTabs === 'radix' && (
+                    <p className="text-sm text-color-secondary">
+                        NOTE: The icons below are scraped from the <Link href="https://www.radix-ui.com/icons" target="_blank" rel="noreferrer" className="underline">RadixUI</Link> library.
+                        <br />
+                        If the owner of the library wants me to remove the icons, please contact me.
+                    </p>
+                )
+            }
             <div className="flex flex-col w-full space-y-4 !mt-4">
                 <div className="flex space-x-2">
+                    {/* show all icon kits here make each one a b adge */}
                     {Object.keys(iconLibraries).map((key) => (
                         <Badge
                             key={key}
-                            color="dark/zinc"
-                            className={`cursor-pointer ${activeTabs.includes(key) ? '!bg-opacity-100' : '!bg-opacity-40'}`}
-                            onClick={() => {
-                                if (activeTabs.includes(key)) {
-                                    setActiveTabs(activeTabs.filter((tab) => tab !== key));
-                                } else {
-                                    setActiveTabs([...activeTabs, key]);
-                                }
-                            }}
+                            onClick={() => setActiveTabs(key)}
+                            className={`cursor-pointer ${activeTabs === key ? '!bg-emerald-500/50' : 'bg-gray-500/10'}`}
+                            active={activeTabs === key}
                         >
                             {iconLibraries[key].display}
                         </Badge>
