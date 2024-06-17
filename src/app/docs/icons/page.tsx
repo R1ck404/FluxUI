@@ -7,11 +7,25 @@ import Link from "next/link";
 import Input from "@/app/components/input/input";
 import { toast } from "@/app/components/toast/toast";
 import DocumentationPage from "@/app/components/documentation/documentation-page/doc-page";
+import Badge from "@/app/components/badge/badge";
 
 type Icon = {
     name: string;
     svg: string;
 }
+
+const iconLibraries = {
+    geist: {
+        display: 'Vercel Geist',
+        url: 'https://vercel.com/geist/icons',
+        directory: 'geist',
+    },
+    radix: {
+        display: 'RadixUI',
+        url: 'https://icons.modulz.app/',
+        directory: 'radix',
+    }
+};
 
 export default function Icons() {
     const [icons, setIcons] = useState<Icon[]>([]);
@@ -20,6 +34,10 @@ export default function Icons() {
     const [loading, setLoading] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const [activeTabs, setActiveTabs] = useState<string[]>(
+        // add geist by default
+        iconLibraries.geist ? ['geist'] : []
+    );
 
     useEffect(() => {
         const fetchIconList = async () => {
@@ -47,7 +65,7 @@ export default function Icons() {
 
             await Promise.all(iconList.map(async (iconFile) => {
                 const name = iconFile.replace('.svg', '');
-                const response = await fetch(`/icons/${iconFile}`);
+                const response = await fetch(`/icons/geist/${iconFile}`);
                 const svg = await response.text();
                 newIcons.push({ name, svg });
             }));
@@ -93,6 +111,24 @@ export default function Icons() {
                 If the owner of the library (Vercel) wants me to remove the icons, please contact me.
             </p>
             <div className="flex flex-col w-full space-y-4 !mt-4">
+                <div className="flex space-x-2">
+                    {Object.keys(iconLibraries).map((key) => (
+                        <Badge
+                            key={key}
+                            color="dark/zinc"
+                            className={`cursor-pointer ${activeTabs.includes(key) ? '!bg-opacity-100' : '!bg-opacity-40'}`}
+                            onClick={() => {
+                                if (activeTabs.includes(key)) {
+                                    setActiveTabs(activeTabs.filter((tab) => tab !== key));
+                                } else {
+                                    setActiveTabs([...activeTabs, key]);
+                                }
+                            }}
+                        >
+                            {iconLibraries[key].display}
+                        </Badge>
+                    ))}
+                </div>
                 {/* 
                     @ts-ignore: Property 'searchInputRef' does not exist on type 'LegacyRef<HTMLInputElement>'
                 */}

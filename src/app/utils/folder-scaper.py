@@ -20,7 +20,7 @@ def list_files_in_directory(directory_path, output_json_path):
     
     print(f"File list saved to {output_json_path}")
 
-directory_path = r'C:\Users\Eigenaar\3D Objects\private-projects\flux-uikit\public\icons'
-output_json_path = r'C:\Users\Eigenaar\3D Objects\private-projects\flux-uikit\public\icons-list.json'
+directory_path = r''
+output_json_path = r''
 
 list_files_in_directory(directory_path, output_json_path)
