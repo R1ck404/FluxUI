@@ -5,7 +5,8 @@ import Button from "@/app/components/button/button";
 import Navbar from "@/app/components/navbar/navbar";
 import { Analytics } from "@vercel/analytics/react"
 
-const inter = Inter({ subsets: ["latin"] });
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 export const metadata: Metadata = {
     title: "FluxUI",
@@ -50,7 +51,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="dark bg-background">
-            <body className={inter.className}>
+            <body className={GeistSans.className}>
                 {children}
                 <Analytics />
             </body>

@@ -33,8 +33,8 @@ const Button = ({
             "text-black bg-white hover:bg-neutral-200 border border-border": color === "light",
         },
         {
-            "text-black dark:text-white bg-transparent border border-border dark:hover:bg-zinc-700/50 hover:bg-zinc-200/50": variant === "outline",
             "text-black dark:text-white bg-transparent border border-transparent dark:hover:bg-zinc-700/50 hover:bg-zinc-200/50": variant === "ghost",
+            "text-black dark:text-white bg-transparent border !border-border dark:hover:bg-zinc-700/50 hover:bg-zinc-200/50": variant === "outline",
         },
         {
             "cursor-not-allowed opacity-50": disabled,
