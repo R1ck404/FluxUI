@@ -13,8 +13,8 @@ export default function Templates() {
 
             <h2 className="text-2xl font-semibold text-color-default !mt-8">Login Templates</h2>
             <div className="flex space-x-2 flex-wrap mt-4">
-                <Link className="rounded-lg border-border border flex-col flex min-w-80 min-h-40 relative" href="/templates/login_01">
-                    <Image src="/templates/login_01.png" fill alt="Login Template 1" className="rounded-lg" />
+                <Link className="rounded-lg border-border border flex-col flex relative" href="/templates/login_01">
+                    <Image src="/templates/login_01.png" width={0} height={0} alt="Login Template 1" className="rounded-lg" layout="responsive" />
                 </Link>
             </div>
         </DocumentationPage>
