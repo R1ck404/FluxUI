@@ -51,9 +51,9 @@ export default function Home() {
             <Toaster position="bottom-right" />
             <div className="w-full"><Navbar /></div>
             <section className="flex flex-col xl:flex-row mt-12 xl:mt-0 xl:h-[calc(100vh-4rem-1px)] w-auto overflow-hidden">
-                <div className="flex flex-col min-w-[42rem] space-y-2 ml-6 xl:ml-0 xl:px-16 h-full justify-center">
-                    <h1 className="text-4xl font-extrabold text-zinc-900 dark:text-zinc-300">Fully Customizable <span className="text-4xl font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">UI Components</span> for <span className="text-4xl font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">Effortless Integration</span></h1>
-                    <p className="dark:text-zinc-300">Build modern and beautiful user interfaces with our zero-dependency, copy-paste-ready React components. Enhance your project seamlessly, without the bloat.</p>
+                <div className="flex flex-col xl:min-w-[42rem] space-y-2 ml-6 xl:ml-0 xl:px-16 h-full justify-center">
+                    <h1 className="text-2xl lg:text-3xl 2xl:text-4xl font-extrabold text-zinc-900 dark:text-zinc-300">Fully Customizable <span className=" font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">UI Components</span> for <span className=" font-extrabold bg-gradient-to-r from-violet-500  to-indigo-500 inline-block text-transparent bg-clip-text">Effortless Integration</span></h1>
+                    <p className="dark:text-zinc-300 text-md lg:text-xl">Build modern and beautiful user interfaces with our zero-dependency, copy-paste-ready React components. Enhance your project seamlessly, without the bloat.</p>
                     <div className="flex space-x-2">
                         <Button variant="default" href="/docs/getting-started" color="indigo">
                             <span>Get Started</span>
@@ -107,7 +107,6 @@ export default function Home() {
                             <Button variant="default" color="dark/zinc" className="mt-2 w-full">Dismiss</Button>
                         </Card>
 
-                        {/* security alert, login from x location, accept or deny */}
                         <Card className="flex flex-col items-center justify-center">
                             <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow-500/30">
                                 <svg height="20" strokeLinejoin="round" viewBox="0 0 16 16" width="20">
@@ -253,7 +252,7 @@ export default function Home() {
                             </div>
                             <h1 className="text-xl font-bold mt-4">Sid Meier's Sneakers</h1>
                             <p className="text-sm">Limited edition sneakers inspired by the legendary game designer Sid Meier.</p>
-                            <div className="flex items-center justify-between mt-4">
+                            <div className="flex items-center justify-between mt-4 z-auto">
                                 <Select defaultValue="black">
                                     <SelectOption value="black">Black</SelectOption>
                                     <SelectOption value="white">White</SelectOption>
@@ -428,12 +427,12 @@ export default function Home() {
                 </div>
             </section >
 
-            <Alert open={isDomainAlertOpen} onClose={setIsDomainAlertOpen} outline={false}>
+            <Alert open={isDomainAlertOpen} onClose={setIsDomainAlertOpen} outline>
                 <AlertTitle>Delete domain</AlertTitle>
                 <AlertDescription>Are you sure you want to delete this domain?</AlertDescription>
                 <AlertActions>
                     <Button variant="ghost" onClick={() => setIsDomainAlertOpen(false)}>Cancel</Button>
-                    <Button variant="ghost" onClick={() => {
+                    <Button variant="default" color="rose" onClick={() => {
                         setIsDomainAlertOpen(false);
                         toast.success(`Domain has been removed.`);
                     }}>Delete</Button>

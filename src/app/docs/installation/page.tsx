@@ -16,12 +16,12 @@ export default function Installation() {
                 <p className="text-black dark:text-zinc-200 text-sm">Tailwind CSS is a utility-first CSS framework that we use for styling our components. Follow these steps to install Tailwind CSS:</p>
 
                 <h3 className="text-lg font-semibold text-black dark:text-white">Using npm:</h3>
-                <Card color="dark/zinc" className="space-y-4">
+                    <Card color="dark/zinc" className="space-y-4 overflow-scroll">
                     <p>npm install tailwindcss postcss autoprefixer</p>
                 </Card>
 
                 <h3 className="text-lg font-semibold text-black dark:text-white">Using yarn:</h3>
-                <Card color="dark/zinc" className="space-y-4">
+                    <Card color="dark/zinc" className="space-y-4 overflow-scroll">
                     <p>yarn add tailwindcss postcss autoprefixer</p>
                 </Card>
             </div>
@@ -30,7 +30,7 @@ export default function Installation() {
                 <h2 className="text-lg font-semibold text-black dark:text-white">2. Configure Tailwind CSS</h2>
                 <p className="text-black dark:text-zinc-200 text-sm">Once installed, you'll need to set up a Tailwind configuration file. Create a tailwind.config.js file in the root of your project and paste the following content:</p>
 
-                <Card color="dark/zinc" className="space-y-4">
+                    <Card color="dark/zinc" className="space-y-4 overflow-scroll">
                     <pre>
                         <code>
                             {`// tailwind.config.js
@@ -74,7 +74,7 @@ export default config;
             </div>
             <div className="space-y-2">
                 <h3 className="text-lg font-semibold text-black dark:text-white">3. Create a CSS File</h3>
-                <Card color="dark/zinc" className="space-y-4">
+                    <Card color="dark/zinc" className="space-y-4 overflow-scroll">
                     <p>In your project, create a CSS file (e.g., globals.css) and add the following content:</p>
                     <pre>
                         <code>

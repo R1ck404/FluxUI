@@ -62,7 +62,7 @@ const AlertDescription = ({ children, className }: { children: React.ReactNode; 
 };
 
 const AlertActions = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-    return <div className={classNames("flex justify-end mt-4", className)}>{children}</div>;
+    return <div className={classNames("flex justify-end mt-4 space-x-1", className)}>{children}</div>;
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertActions };

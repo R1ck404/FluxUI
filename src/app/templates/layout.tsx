@@ -5,7 +5,8 @@ import Navbar from "@/app/components/navbar/navbar";
 import { Analytics } from "@vercel/analytics/react"
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import "./globals.css";
+import "@/app/globals.css";
+import { Toaster } from "../components/toast/toast";
 
 export const metadata: Metadata = {
     title: "FluxUI",
@@ -52,6 +53,7 @@ export default function RootLayout({
         <html lang="en" className="dark bg-background">
             <body className={GeistSans.className}>
                 {children}
+                <Toaster position="bottom-right" />
                 <Analytics />
             </body>
         </html>

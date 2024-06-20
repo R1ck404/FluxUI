@@ -122,7 +122,6 @@ export default function Icons() {
             }
             <div className="flex flex-col w-full space-y-4 !mt-4">
                 <div className="flex space-x-2">
-                    {/* show all icon kits here make each one a b adge */}
                     {Object.keys(iconLibraries).map((key) => (
                         <Badge
                             key={key}
@@ -185,7 +184,6 @@ export default function Icons() {
                     </div>
                 ))}
 
-                {/* skeleton */}
                 {loading && Array.from({ length: 40 }).map((_, index) => (
                     <div key={index} className="flex flex-col items-center justify-center bg-secondary text-color-secondary rounded p-4 w-full h-24 animate-pulse">
                         <div className="w-8 h-8 bg-background" />

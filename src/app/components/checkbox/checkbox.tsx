@@ -52,7 +52,7 @@ const Checkbox = ({
     };
 
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center">
             <div
                 className={classes}
                 onClick={handleToggle}
